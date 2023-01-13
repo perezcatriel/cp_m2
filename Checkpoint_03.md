@@ -174,7 +174,7 @@ SELECT p.Tipo, SUM(v.Cantidad) AS TotalVentas
 FROM venta v
 JOIN producto p
 ON v.IdProducto = p.IdProducto
-Where YEAR(v.Fecha) = 2018
+WHERE YEAR(v.Fecha) = 2018
 GROUP BY p.Tipo
 ORDER BY TotalVentas DESC
 LIMIT 1 OFFSET 1;
@@ -183,16 +183,11 @@ LIMIT 1 OFFSET 1;
 ## 13) ¿Cuantos productos tienen la palabra CD en alguna parte de su descripción (Concepto = Descripción del Producto) y su precio es mayor a 500? 
 
 ```sql
-SELECT p.Tipo, SUM(v.Cantidad) AS TotalVentas
-FROM venta v
-JOIN producto p
-ON v.IdProducto = p.IdProducto
-Where YEAR(v.Fecha) = 2018
-GROUP BY p.Tipo
-ORDER BY TotalVentas DESC
-LIMIT 1 OFFSET 1;
+SELECT COUNT(*) AS CantidadProductos
+FROM producto
+WHERE Concepto LIKE '%CD%' AND Precio > 500;
 ```
-# 13. 
+# 13. la cantidad de productos que tienen la palabra CD y cuestan mas de 500 son "3"
 
 ## Las respuestas sobre probabilidades se deben expresar entre 0 y 1, y con el criterio ya mencionado de redondeo a dos decimales.
 ## Ej: no 25%, sino 0.25
