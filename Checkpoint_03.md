@@ -147,6 +147,16 @@ e - 2557<br>
 ## Pista: acordate de las funciones de agregacion AVG/SUM/MIN/MAX
 <br>
 
+```sql
+SELECT YEAR(Fecha) AS Anio,
+AVG(DATEDIFF(Fecha_Entrega, Fecha)) AS PromedioEntrega
+FROM venta
+GROUP BY YEAR(Fecha)
+ORDER BY PromedioEntrega DESC
+LIMIT 1;
+```
+# 11. el año con promedio mas alto es 2020
+
 ### 12) La dirección desea saber que tipo de producto tiene la segunda mayor venta en 2018 (Tabla 'producto', campo Tipo = Tipo de producto).
 ## Pista: acordate de las funciones de agregacion AVG/SUM/MIN/MAX
 a - INFORMATICA<br>
@@ -159,8 +169,30 @@ g - BASES<br>
 h - GAMING<br>
 <br>
 
+```sql
+SELECT p.Tipo, SUM(v.Cantidad) AS TotalVentas
+FROM venta v
+JOIN producto p
+ON v.IdProducto = p.IdProducto
+Where YEAR(v.Fecha) = 2018
+GROUP BY p.Tipo
+ORDER BY TotalVentas DESC
+LIMIT 1 OFFSET 1;
+```
+# 12. El segundo producto con mayor ventas es IMPRESION con 3478
 ## 13) ¿Cuantos productos tienen la palabra CD en alguna parte de su descripción (Concepto = Descripción del Producto) y su precio es mayor a 500? 
 
+```sql
+SELECT p.Tipo, SUM(v.Cantidad) AS TotalVentas
+FROM venta v
+JOIN producto p
+ON v.IdProducto = p.IdProducto
+Where YEAR(v.Fecha) = 2018
+GROUP BY p.Tipo
+ORDER BY TotalVentas DESC
+LIMIT 1 OFFSET 1;
+```
+# 13. 
 
 ## Las respuestas sobre probabilidades se deben expresar entre 0 y 1, y con el criterio ya mencionado de redondeo a dos decimales.
 ## Ej: no 25%, sino 0.25
